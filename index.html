@@ -17,12 +17,10 @@
     <!--Instead of static code we can use variable now-->
 
     <div id="app" v-cloak>
-      {{greeting}}
-
-      <input v-model="greeting" />
+      <input @keyup.enter="greet(greeting + '!!!!!!')" v-model="greeting" />
       <hr />
       <!--instead of v-on we can use @click-->
-      <button @click="toggleBox">Toggle box</button>
+      <button @click.prevent.stop="toggleBox">Toggle box</button>
       <div v-if="isVisible" class="box"></div>
     </div>
     <script src="https://unpkg.com/vue@next"></script>
@@ -40,10 +38,15 @@
           toggleBox() {
             this.isVisible = !this.isVisible;
           },
+          greet(greeting) {
+            console.log(greeting);
+          },
         },
       });
       //allows to connect VUE application to HTML
       app.mount("#app");
+      //Login form is one component
+      //custom input which is one component which can be reused
     </script>
   </body>
 </html>
